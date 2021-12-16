@@ -1,6 +1,6 @@
 import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
-// import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
-import BalloonEditorBase from '@ckeditor/ckeditor5-editor-inline/src/inlineeditor';
+import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
+// import BalloonEditorBase from '@ckeditor/ckeditor5-editor-inline/src/inlineeditor';
 
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
