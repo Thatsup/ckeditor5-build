@@ -1,4 +1,6 @@
 import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+// import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
+import BalloonEditorBase from '@ckeditor/ckeditor5-editor-inline/src/inlineeditor';
 
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
@@ -26,9 +28,11 @@ import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleu
 import InternalLink from "./plugins/internallink/src/internalLink.js"
 
 class ClassicEditor extends ClassicEditorBase {}
+class BalloonEditor extends BalloonEditorBase {}
+class MiniEditor extends BalloonEditorBase {}
 
 // Plugins to include in the build.
-ClassicEditor.builtinPlugins = [
+const plugins = [
 	Alignment,
 	Essentials,
 	Autoformat,
@@ -55,8 +59,12 @@ ClassicEditor.builtinPlugins = [
 	InternalLink,
 ];
 
+ClassicEditor.builtinPlugins = plugins;
+BalloonEditor.builtinPlugins = plugins;
+MiniEditor.builtinPlugins = plugins;
+
 // Editor configuration.
-ClassicEditor.defaultConfig = {
+const config = {
 	toolbar: {
 		items: [
 			'heading',
@@ -95,23 +103,20 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 
-	internallink: {
-		testmode: false,
-
-		autocompleteEndpoint: 'https://thatsup.test/admin-v2/api/places/?term={searchTerm}',
-		labelKey: 'name', // Key of autocomplete list
-		valueKey: 'uuid', // Key of the value to be used by internalLinkId
-		idAttr: 'data-place',
-
-		titleEndpoint: 'https://thatsup.test/admin-v2/api/places/{internalLinkId}/',
-		titleKey: 'name', // Key of the object which is fetched by `titleEndpoint` after user clicks existing link.
-		hrefKey: 'url', // Set the href attribute to this key (optional)
-
-		previewurl: '',
-	},
-
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
 };
 
-export default ClassicEditor
+ClassicEditor.defaultConfig = config;
+BalloonEditor.defaultConfig = config;
+MiniEditor.defaultConfig = {...config, ...{
+	toolbar: {
+		items: [
+			'bold',
+			'italic',
+			'link',
+		]
+	}
+}};
+
+export default {ClassicEditor, BalloonEditor, MiniEditor}
