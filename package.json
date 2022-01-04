@@ -1,25 +1,7 @@
 {
-  "name": "@ckeditor/ckeditor5-build-classic",
-  "version": "31.0.0",
-  "description": "The classic editor build of CKEditor 5 – the best browser-based rich text editor.",
-  "keywords": [
-    "ckeditor5-build",
-    "ckeditor",
-    "ckeditor5",
-    "ckeditor 5",
-    "wysiwyg",
-    "rich text",
-    "editor",
-    "html",
-    "contentEditable",
-    "editing",
-    "operational transformation",
-    "ot",
-    "collaboration",
-    "collaborative",
-    "real-time",
-    "framework"
-  ],
+  "name": "@thatsup/ckeditor5-build",
+  "version": "3.0.1",
+  "description": "",
   "main": "./build/ckeditor.js",
   "files": [
     "build",
@@ -45,6 +27,7 @@
     "@ckeditor/ckeditor5-media-embed": "^31.0.0",
     "@ckeditor/ckeditor5-paragraph": "^31.0.0",
     "@ckeditor/ckeditor5-paste-from-office": "^31.0.0",
+    "@ckeditor/ckeditor5-remove-format": "^31.0.0",
     "@ckeditor/ckeditor5-table": "^31.0.0",
     "@ckeditor/ckeditor5-typing": "^31.0.0",
     "@ckeditor/ckeditor5-upload": "^31.0.0",
@@ -69,14 +52,9 @@
     "node": ">=12.0.0",
     "npm": ">=5.7.1"
   },
-  "author": "CKSource (http://cksource.com/)",
-  "license": "GPL-2.0-or-later",
-  "homepage": "https://ckeditor.com/ckeditor-5",
-  "bugs": "https://github.com/ckeditor/ckeditor5/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ckeditor/ckeditor5.git",
-    "directory": "packages/ckeditor5-build-classic"
+    "url": "https://github.com/Thatsup/ckeditor5-build.git"
   },
   "scripts": {
     "dev": "webpack -w --mode development",

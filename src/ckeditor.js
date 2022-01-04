@@ -1,6 +1,5 @@
 import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
-// import BalloonEditorBase from '@ckeditor/ckeditor5-editor-inline/src/inlineeditor';
 
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
@@ -24,6 +23,7 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
 
 import InternalLink from "./plugins/internallink/src/internalLink.js"
 
@@ -55,13 +55,20 @@ const plugins = [
 	Table,
 	TableToolbar,
 	TextTransformation,
+	RemoveFormat,
 
 	InternalLink,
 ];
 
 ClassicEditor.builtinPlugins = plugins;
 BalloonEditor.builtinPlugins = plugins;
-MiniEditor.builtinPlugins = plugins;
+MiniEditor.builtinPlugins = [
+	Essentials,
+	Bold,
+	Italic,
+	Link,
+	Paragraph,
+];
 
 // Editor configuration.
 const config = {
@@ -82,6 +89,7 @@ const config = {
 			'mediaEmbed',
 			'undo',
 			'redo',
+			'removeFormat',
 			'internalLink',
 		]
 	},
@@ -104,19 +112,23 @@ const config = {
 	},
 
 	// This value must be kept in sync with the language defined in webpack.config.js.
-	language: 'en'
+	language: 'en',
+	additionalLanguages: ['sv'],
 };
 
 ClassicEditor.defaultConfig = config;
 BalloonEditor.defaultConfig = config;
-MiniEditor.defaultConfig = {...config, ...{
+MiniEditor.defaultConfig = {
 	toolbar: {
 		items: [
 			'bold',
 			'italic',
 			'link',
 		]
-	}
-}};
+	},
+
+	language: 'en',
+	additionalLanguages: ['sv'],
+};
 
 export default {ClassicEditor, BalloonEditor, MiniEditor}

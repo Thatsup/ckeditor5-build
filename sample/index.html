@@ -31,7 +31,22 @@
 <script src="../build/ckeditor.js"></script>
 <script>
   CKEDITOR.ClassicEditor
-      .create( document.querySelector( '#editor' ) )
+      .create( document.querySelector( '#editor' ), {
+        internallink: {
+          testmode: true,
+
+          // autocompleteEndpoint: '/admin-v2/api/places/?term={searchTerm}',
+          // labelKey: 'name', // Key of autocomplete list
+          // valueKey: 'uuid', // Key of the value to be used by internalLinkId
+          idAttr: 'data-foobar',
+          //
+          // titleEndpoint: '/admin-v2/api/places/search/{internalLinkId}/',
+          // titleKey: 'name', // Key of the object which is fetched by `titleEndpoint` after user clicks existing link.
+          // hrefKey: 'url', // Set the href attribute to this key (optional)
+
+          previewurl: '',
+        }
+      } )
       .catch( err => {
         console.error( err.stack );
       } );
