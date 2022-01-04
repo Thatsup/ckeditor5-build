@@ -24,6 +24,7 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
 import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
+import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline'
 
 import InternalLink from "./plugins/internallink/src/internalLink.js"
 
@@ -56,6 +57,7 @@ const plugins = [
 	TableToolbar,
 	TextTransformation,
 	RemoveFormat,
+	Underline,
 
 	InternalLink,
 ];
@@ -79,6 +81,7 @@ const config = {
 			'bold',
 			'italic',
 			'link',
+			'underline',
 			'alignment',
 			'bulletedList',
 			'numberedList',

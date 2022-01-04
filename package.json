@@ -30,6 +30,7 @@
     "@ckeditor/ckeditor5-remove-format": "^31.0.0",
     "@ckeditor/ckeditor5-table": "^31.0.0",
     "@ckeditor/ckeditor5-typing": "^31.0.0",
+    "@ckeditor/ckeditor5-underline": "^31.0.0",
     "@ckeditor/ckeditor5-upload": "^31.0.0",
     "awesomplete": "^1.1.2",
     "axios": "^0.21.4"
