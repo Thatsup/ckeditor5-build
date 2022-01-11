@@ -4,7 +4,7 @@ export const VIEW_INTERNAL_LINK_ID_ATTRIBUTE = 'internallinkid';
 
 export const MODEL_INTERNAL_LINK_ID_ATTRIBUTE = 'internalLinkId';
 
-export const MODEL_INTERNAL_LINK_HREF_ATTRIBUTE = 'internalLinkHref';
+export const MODEL_INTERNAL_LINK_HREF_ATTRIBUTE = 'linkHref';
 
 export const MODEL_INTERNAL_DATA = 'internalLinkData';
 

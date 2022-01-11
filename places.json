@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Foobar Bar",
+    "uuid": 900,
+    "url": "https://example.com/bar"
+  },
+  {
+    "name": "Foobar Resto",
+    "uuid": 321,
+    "url": "https://example.com/resto"
+  },
+  {
+    "name": "Foobar Cafe",
+    "uuid": 760,
+    "url": "https://example.com/cafe"
+  }
+]

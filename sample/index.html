@@ -25,28 +25,34 @@
 <div id="editor">
     <p>
         Äntligen är Stockholms bästa kanelbulle 2020 korad. Stadens största test av kanelbullar, som anordnas av Thatsup och Smakdomarna, gick av stapeln under måndagen på
+        <a data-page="321" href="https://example.com/resto">Foobar Resto</a>
     </p>
 </div>
 
 <script src="../build/ckeditor.js"></script>
+<script src="../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js"></script>
+
 <script>
   CKEDITOR.ClassicEditor
       .create( document.querySelector( '#editor' ), {
         internallink: {
-          testmode: true,
+          testmode: false,
 
-          // autocompleteEndpoint: '/admin-v2/api/places/?term={searchTerm}',
-          // labelKey: 'name', // Key of autocomplete list
-          // valueKey: 'uuid', // Key of the value to be used by internalLinkId
-          idAttr: 'data-foobar',
-          //
-          // titleEndpoint: '/admin-v2/api/places/search/{internalLinkId}/',
-          // titleKey: 'name', // Key of the object which is fetched by `titleEndpoint` after user clicks existing link.
-          // hrefKey: 'url', // Set the href attribute to this key (optional)
+          autocompleteEndpoint: '/places.json',
+          labelKey: 'name', // Key of autocomplete list
+          valueKey: 'uuid', // Key of the value to be used by internalLinkId
+          idAttr: 'data-page',
 
-          previewurl: '',
+          titleEndpoint: '/place.json',
+          titleKey: 'name', // Key of the object which is fetched by `titleEndpoint` after user clicks existing link.
+          hrefKey: 'url', // Set the href attribute to this key (optional)
+
+          // previewurl: '',
         }
       } )
+      .then(editor => {
+        CKEditorInspector.attach( editor );
+      })
       .catch( err => {
         console.error( err.stack );
       } );
