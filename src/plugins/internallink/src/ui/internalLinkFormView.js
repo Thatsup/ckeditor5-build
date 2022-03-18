@@ -33,6 +33,7 @@ import {
 } from '../util/constants';
 
 import '../../theme/internallinkform.css';
+import debounce from "lodash/debounce";
 
 /**
  * The internal link form view controller class.
@@ -274,18 +275,20 @@ export default class InternalLinkFormView extends View {
 
     loadAutocompleteData() {
         this.set(PROPERTY_INTERNAL_LINK_ID, '');
-        this.dataContext.getAutocompleteItems(this.titleInputView.inputView.element.value)
-            .then(response => {
-                if (response.data.data) {
-                    this.autocomplete.list = response.data.data;
-                } else {
-                    this.autocomplete.list = response.data;
-                }
+        return debounce(() => {
+            this.dataContext.getAutocompleteItems(this.titleInputView.inputView.element.value)
+                .then(response => {
+                    if (response.data.data) {
+                        this.autocomplete.list = response.data.data;
+                    } else {
+                        this.autocomplete.list = response.data;
+                    }
 
-            })
-            .catch(() => {
-                this.autocomplete.list = [];
-            });
+                })
+                .catch(() => {
+                    this.autocomplete.list = [];
+                });
+        }, 250)
     }
 
     /**

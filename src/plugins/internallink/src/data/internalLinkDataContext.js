@@ -5,6 +5,7 @@
 import axios from 'axios';
 
 import {replacePlaceholderInUrl} from '../util/utils';
+import debounce from "lodash/debounce";
 
 import {
     CONFIG_TEST_MODE,
@@ -14,7 +15,6 @@ import {
     URL_PLACEHOLDER_ID,
     URL_PLACEHOLDER_SEARCH_TERM, CONFIG_TITLE_KEY
 } from '../util/constants';
-import get from "lodash/get";
 
 /**
  * This is used to call a web service for finding
