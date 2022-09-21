@@ -1,16 +1,19 @@
 [
   {
     "name": "Foobar Bar",
+    "city": "Stockholm",
     "uuid": 900,
     "url": "https://example.com/bar"
   },
   {
     "name": "Foobar Resto",
+    "city": "Stockholm",
     "uuid": 321,
     "url": "https://example.com/resto"
   },
   {
     "name": "Foobar Cafe",
+    "city": "Stockholm",
     "uuid": 760,
     "url": "https://example.com/cafe"
   }

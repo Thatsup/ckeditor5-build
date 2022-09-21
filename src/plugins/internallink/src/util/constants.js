@@ -26,6 +26,8 @@ export const CONFIG_ID_ATTRIBUTE = 'internallink.idAttr';
 
 export const CONFIG_LABEL_KEY = 'internallink.labelKey'
 
+export const CONFIG_SUB_LABEL_KEY = 'internallink.subLabelKey'
+
 export const CONFIG_VALUE_KEY = 'internallink.valueKey'
 
 export const CONFIG_HREF_KEY = 'internallink.hrefKey'

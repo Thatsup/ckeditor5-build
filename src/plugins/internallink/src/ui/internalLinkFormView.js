@@ -26,6 +26,7 @@ import get from 'lodash/get'
 
 import {
     CONFIG_LABEL_KEY,
+    CONFIG_SUB_LABEL_KEY,
     CONFIG_VALUE_KEY,
     MODEL_INTERNAL_DATA,
     PROPERTY_INTERNAL_LINK_ID,
@@ -214,13 +215,23 @@ export default class InternalLinkFormView extends View {
         }
 
         const labelKey = this.editor.config.get(CONFIG_LABEL_KEY);
+        const subLabelKey = this.editor.config.get(CONFIG_SUB_LABEL_KEY);
         const valueKey = this.editor.config.get(CONFIG_VALUE_KEY);
 
         this.autocomplete = new Awesomplete(this.titleInputView.inputView.element, {
             list: [],
             data(item) {
+                let label = '';
+
+                if(subLabelKey) {
+                    label += `<strong>${get(item, labelKey)}</strong><br>${get(item, subLabelKey)}`;
+                } else {
+                    label = get(item, labelKey);
+                }
+
+
                 return {
-                    label: get(item, labelKey),
+                    label: label,
                     value: item,
                     // value: get(item, valueKey),
                 };

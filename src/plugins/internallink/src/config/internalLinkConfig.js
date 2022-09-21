@@ -11,6 +11,7 @@ import {
     CONFIG_AXIOS_INSTANCE,
     CONFIG_PREVIEW_URL,
     CONFIG_LABEL_KEY,
+    CONFIG_SUB_LABEL_KEY,
     CONFIG_VALUE_KEY, CONFIG_TITLE_KEY, VIEW_INTERNAL_LINK_ID_ATTRIBUTE, CONFIG_ID_ATTRIBUTE, CONFIG_HREF_KEY
 } from '../util/constants';
 
@@ -54,6 +55,7 @@ export default class InternalLinkConfig extends Plugin {
         editor.config.define(CONFIG_TITLE_KEY, '');
         editor.config.define(CONFIG_ID_ATTRIBUTE, 'internal-id');
         editor.config.define(CONFIG_LABEL_KEY, 'label');
+        editor.config.define(CONFIG_SUB_LABEL_KEY, '');
         editor.config.define(CONFIG_VALUE_KEY, 'id');
         editor.config.define(CONFIG_HREF_KEY, '');
         editor.config.define(CONFIG_AXIOS_INSTANCE, undefined);
