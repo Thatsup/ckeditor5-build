@@ -253,11 +253,9 @@ export default class InternalLinkFormView extends View {
             this.set(PROPERTY_TITLE, '');
             this.set(MODEL_INTERNAL_DATA, {});
 
-            const valueKey = this.editor.config.get(CONFIG_VALUE_KEY);
-
             this.set(MODEL_INTERNAL_DATA, event.text.value);
             this.set(PROPERTY_INTERNAL_LINK_ID, get(event.text.value, valueKey));
-            this.set(PROPERTY_TITLE, event.text.label);
+            this.set(PROPERTY_TITLE, get(event.text.value, labelKey));
         }.bind(this));
 
     }
