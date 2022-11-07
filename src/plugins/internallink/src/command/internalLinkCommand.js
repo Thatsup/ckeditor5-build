@@ -46,6 +46,7 @@ export default class InternalLinkCommand extends Command {
         super(editor);
 
         // Make the title observable
+        this.set('name', undefined);
         this.set(PROPERTY_TITLE, undefined);
         this.set(MODEL_INTERNAL_DATA, undefined);
     }
@@ -118,15 +119,23 @@ export default class InternalLinkCommand extends Command {
                         selection.getFirstPosition(),
                         selection.getAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE),
                         model);
+                    writer.remove(linkRange)
 
-                    writer.setAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId, linkRange);
+                    const position = selection.getFirstPosition();
+                    const attributes = toMap(selection.getAttributes());
+
+                    attributes.set(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId);
 
                     if (hrefKey) {
-                        writer.setAttribute(MODEL_INTERNAL_LINK_HREF_ATTRIBUTE, internalLinkHref, linkRange);
+                        attributes.set(MODEL_INTERNAL_LINK_HREF_ATTRIBUTE, internalLinkHref);
                     }
 
-                    // Create new range wrapping changed link.
-                    writer.setSelection(linkRange);
+                    const node = writer.createText(internalLinkText, attributes);
+                    writer.insert(node, position);
+
+                    // Create new range wrapping created node.
+                    writer.setSelection(writer.createRangeOn(node));
+
                 }
                     // If not then insert text node with `internalLinkId` attribute in place of caret.
                     // However, since selection in collapsed, attribute value will be used as data for text node.
@@ -137,11 +146,10 @@ export default class InternalLinkCommand extends Command {
                     attributes.set(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId);
 
                     if (hrefKey) {
-                        writer.setAttribute(MODEL_INTERNAL_LINK_HREF_ATTRIBUTE, internalLinkHref);
+                        attributes.set(MODEL_INTERNAL_LINK_HREF_ATTRIBUTE, internalLinkHref);
                     }
 
                     const node = writer.createText(internalLinkText, attributes);
-
                     writer.insert(node, position);
 
                     // Create new range wrapping created node.
@@ -153,11 +161,22 @@ export default class InternalLinkCommand extends Command {
                 const ranges = model.schema.getValidRanges(selection.getRanges(), MODEL_INTERNAL_LINK_ID_ATTRIBUTE);
 
                 for (const range of ranges) {
-                    writer.setAttribute(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId, range);
+                    const position = selection.getFirstPosition();
+                    const attributes = toMap(selection.getAttributes());
+
+                    attributes.set(MODEL_INTERNAL_LINK_ID_ATTRIBUTE, internalLinkId);
 
                     if (hrefKey) {
-                        writer.setAttribute(MODEL_INTERNAL_LINK_HREF_ATTRIBUTE, internalLinkHref, range);
+                        attributes.set(MODEL_INTERNAL_LINK_HREF_ATTRIBUTE, internalLinkHref);
                     }
+
+                    writer.remove(selection.getFirstRange())
+
+                    const node = writer.createText(internalLinkText, attributes);
+                    writer.insert(node, position);
+
+                    // Create new range wrapping created node.
+                    writer.setSelection(writer.createRangeOn(node));
                 }
             }
         });
