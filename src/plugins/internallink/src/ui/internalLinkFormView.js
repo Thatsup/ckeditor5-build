@@ -278,8 +278,7 @@ export default class InternalLinkFormView extends View {
                 return;
             }
 
-            clearTimeout(timeout);
-            timeout = setTimeout(this.loadAutocompleteData(), 500);
+            this.loadAutocompleteData()
 
         }.bind(this);
     }
@@ -299,7 +298,7 @@ export default class InternalLinkFormView extends View {
                 .catch(() => {
                     this.autocomplete.list = [];
                 });
-        }, 250)
+        }, 500)
     }
 
     /**
