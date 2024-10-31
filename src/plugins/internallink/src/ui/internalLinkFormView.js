@@ -236,6 +236,7 @@ export default class InternalLinkFormView extends View {
                     // value: get(item, valueKey),
                 };
             },
+            sort: false,
             filter() {
                 // Dont filter client side. The web service returns the data that should be shown only.
                 return true;
@@ -263,6 +264,10 @@ export default class InternalLinkFormView extends View {
     registerAutocompleteKeyUpEvent() {
         let timeout = null;
 
+        this.debouncedLoadAutocompleteData = debounce(() => {
+            this.loadAutocompleteData();
+        }, 500);
+
         this.titleInputView.inputView.element.onkeyup = function(event) {
 
             if (event.key == 'ArrowDown'
@@ -276,27 +281,25 @@ export default class InternalLinkFormView extends View {
                 return;
             }
 
-            this.loadAutocompleteData()
+            this.debouncedLoadAutocompleteData();
 
         }.bind(this);
     }
 
     loadAutocompleteData() {
         this.set(PROPERTY_INTERNAL_LINK_ID, '');
-        return debounce(() => {
-            this.dataContext.getAutocompleteItems(this.titleInputView.inputView.element.value)
-                .then(response => {
-                    if (response.data.data) {
-                        this.autocomplete.list = response.data.data;
-                    } else {
-                        this.autocomplete.list = response.data;
-                    }
+        this.dataContext.getAutocompleteItems(this.titleInputView.inputView.element.value)
+            .then(response => {
+                if (response.data.data) {
+                    this.autocomplete.list = response.data.data;
+                } else {
+                    this.autocomplete.list = response.data;
+                }
 
-                })
-                .catch(() => {
-                    this.autocomplete.list = [];
-                });
-        }, 500)
+            })
+            .catch(() => {
+                this.autocomplete.list = [];
+            });
     }
 
     /**
