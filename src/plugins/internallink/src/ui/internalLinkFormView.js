@@ -236,7 +236,9 @@ export default class InternalLinkFormView extends View {
                     // value: get(item, valueKey),
                 };
             },
-            sort: false,
+            sort() {
+                return false;
+            },
             filter() {
                 // Dont filter client side. The web service returns the data that should be shown only.
                 return true;
