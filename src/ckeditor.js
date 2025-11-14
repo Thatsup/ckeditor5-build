@@ -27,6 +27,7 @@ import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformatio
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
 import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline'
+import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
 
 import InternalLink from "./plugins/internallink/src/internalLink.js"
 
@@ -43,6 +44,7 @@ const plugins = [
 	Italic,
 	BlockQuote,
 	Heading,
+	HorizontalLine,
 	Image,
 	ImageCaption,
 	ImageStyle,
@@ -94,6 +96,7 @@ const config = {
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
+			'horizontalLine',
 			'undo',
 			'redo',
 			'removeFormat',
