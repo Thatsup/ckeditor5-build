@@ -1,6 +1,6 @@
 {
   "name": "@thatsup/ckeditor5-build",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "description": "",
   "main": "./build/ckeditor.js",
   "files": [
@@ -47,10 +47,10 @@
     "postcss-loader": "4.3.0",
     "raw-loader": "^4.0.1",
     "style-loader": "^2.0.0",
-    "terser-webpack-plugin": "^4.2.3",
+    "terser-webpack-plugin": "^5.0",
     "ts-loader": "^9.3.0",
-    "webpack": "^5.58.1",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.58",
+    "webpack-cli": "^4.0"
   },
   "engines": {
     "node": ">=12.0.0",
