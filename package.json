@@ -34,13 +34,13 @@
     "@ckeditor/ckeditor5-table": "^35.2.1",
     "@ckeditor/ckeditor5-theme-lark": "^35.2.1",
     "@ckeditor/ckeditor5-typing": "^35.2.1",
-    "@ckeditor/ckeditor5-upload": "^35.2.1",
-    "awesomplete": "^1.1.2",
-    "axios": "^0.27",
-    "lodash": "^4.17.21"
+    "@ckeditor/ckeditor5-upload": "^35.2.1"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-dev-utils": "^31.0.0",
+    "awesomplete": "^1.1.2",
+    "axios": "^0.27",
+    "lodash": "^4.17.21",
     "@ckeditor/ckeditor5-dev-webpack-plugin": "^31.0.0",
     "@ckeditor/ckeditor5-inspector": "^4.1.0",
     "css-loader": "^5.2.7",
