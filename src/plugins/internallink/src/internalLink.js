@@ -2,7 +2,7 @@
  * @module InternalLink/InternalLink
  */
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import { Plugin } from 'ckeditor5';
 
 import InternalLinkConfig from './config/internalLinkConfig';
 import InternalLinkCommandRegistration from './command/internalLinkCommandRegistration';

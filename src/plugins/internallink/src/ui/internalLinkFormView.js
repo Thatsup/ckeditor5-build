@@ -4,18 +4,17 @@
  * @module internalLink/ui/InternalLinkFormView
  */
 
-import View from '@ckeditor/ckeditor5-ui/src/view';
-import ViewCollection from '@ckeditor/ckeditor5-ui/src/viewcollection';
-
-import LabeledInputView from '@ckeditor/ckeditor5-ui/src/labeledinput/labeledinputview';
-import InputTextView from '@ckeditor/ckeditor5-ui/src/inputtext/inputtextview';
-
-import submitHandler from '@ckeditor/ckeditor5-ui/src/bindings/submithandler';
-import FocusTracker from '@ckeditor/ckeditor5-utils/src/focustracker';
-import KeystrokeHandler from '@ckeditor/ckeditor5-utils/src/keystrokehandler';
-
-import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
-import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
+import {
+    View,
+    ViewCollection,
+    LabeledFieldView,
+    createLabeledInputText,
+    submitHandler,
+    FocusTracker,
+    KeystrokeHandler,
+    IconCheck,
+    IconCancel
+} from 'ckeditor5';
 
 import { createButton, createFocusCycler, registerFocusableViews } from './uiUtils';
 
@@ -129,7 +128,7 @@ export default class InternalLinkFormView extends View {
          *
          * @member {module:ui/button/buttonview~ButtonView}
          */
-        this.saveButtonView = createButton(t('Save'), checkIcon, this.locale, 'ck-button-save');
+        this.saveButtonView = createButton(t('Save'), IconCheck, this.locale, 'ck-button-save');
         this.saveButtonView.type = 'submit';
         this.saveButtonView.bind('isEnabled').to(this, PROPERTY_INTERNAL_LINK_ID);
 
@@ -138,7 +137,7 @@ export default class InternalLinkFormView extends View {
          *
          * @member {module:ui/button/buttonview~ButtonView}
          */
-        this.cancelButtonView = createButton(t('Cancel'), cancelIcon, this.locale, 'ck-button-cancel');
+        this.cancelButtonView = createButton(t('Cancel'), IconCancel, this.locale, 'ck-button-cancel');
         this.cancelButtonView.delegate('execute').to(this, 'cancel');
 
         this.setTemplate({
@@ -202,9 +201,9 @@ export default class InternalLinkFormView extends View {
     createTitleInput() {
         const t = this.locale.t;
 
-        const labeledInput = new LabeledInputView(this.locale, InputTextView);
-        labeledInput.inputView.placeholder = t('Enter title');
-        labeledInput.bind('value').to(this, PROPERTY_TITLE);
+        const labeledInput = new LabeledFieldView(this.locale, createLabeledInputText);
+        labeledInput.fieldView.placeholder = t('Enter title');
+        labeledInput.fieldView.bind('value').to(this, PROPERTY_TITLE);
 
         return labeledInput;
     }
@@ -218,7 +217,7 @@ export default class InternalLinkFormView extends View {
         const subLabelKey = this.editor.config.get(CONFIG_SUB_LABEL_KEY);
         const valueKey = this.editor.config.get(CONFIG_VALUE_KEY);
 
-        this.autocomplete = new Awesomplete(this.titleInputView.inputView.element, {
+        this.autocomplete = new Awesomplete(this.titleInputView.fieldView.element, {
             list: [],
             data(item) {
                 let label = '';
@@ -250,7 +249,7 @@ export default class InternalLinkFormView extends View {
 
         this.registerAutocompleteKeyUpEvent();
 
-        this.titleInputView.inputView.element.addEventListener('awesomplete-selectcomplete', function(event) {
+        this.titleInputView.fieldView.element.addEventListener('awesomplete-selectcomplete', function(event) {
             // Reset the value to ensure that the observables are triggered even if the same value is selected.
             this.set(PROPERTY_INTERNAL_LINK_ID, '');
             this.set(PROPERTY_TITLE, '');
@@ -270,7 +269,7 @@ export default class InternalLinkFormView extends View {
             this.loadAutocompleteData();
         }, 500);
 
-        this.titleInputView.inputView.element.onkeyup = function(event) {
+        this.titleInputView.fieldView.element.onkeyup = function(event) {
 
             if (event.key == 'ArrowDown'
                 || event.key == 'ArrowUp'
@@ -290,7 +289,7 @@ export default class InternalLinkFormView extends View {
 
     loadAutocompleteData() {
         this.set(PROPERTY_INTERNAL_LINK_ID, '');
-        this.dataContext.getAutocompleteItems(this.titleInputView.inputView.element.value)
+        this.dataContext.getAutocompleteItems(this.titleInputView.fieldView.element.value)
             .then(response => {
                 if (response.data.data) {
                     this.autocomplete.list = response.data.data;

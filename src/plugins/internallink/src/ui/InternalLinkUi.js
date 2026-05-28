@@ -2,11 +2,7 @@
  * @module InternalLink/InternalLinkUi
  */
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
-import ClickObserver from '@ckeditor/ckeditor5-engine/src/view/observer/clickobserver';
-
-import ContextualBalloon from '@ckeditor/ckeditor5-ui/src/panel/balloon/contextualballoon';
-import clickOutsideHandler from '@ckeditor/ckeditor5-ui/src/bindings/clickoutsidehandler';
+import { Plugin, ClickObserver, ContextualBalloon, clickOutsideHandler } from 'ckeditor5';
 
 import InternalLinkFormView from './internalLinkFormView';
 import InternalLinkActionsView from './internalLinkActionsView';
@@ -235,7 +231,7 @@ export default class InternalLinkUi extends Plugin {
         formView.bind(PROPERTY_TITLE).to(linkCommand, PROPERTY_TITLE);
 
         // Form elements should be read-only when corresponding commands are disabled.
-        formView.titleInputView.bind('isReadOnly').to(linkCommand, 'isEnabled', value => !value);
+        formView.titleInputView.bind('isEnabled').to(linkCommand, 'isEnabled');
 
         // Execute link command after clicking the "Save" button.
         this.listenTo(formView, 'submit', () => {
@@ -396,7 +392,7 @@ export default class InternalLinkUi extends Plugin {
             position: this.getBalloonPositionData()
         });
 
-        this.formView.titleInputView.select();
+        this.formView.titleInputView.fieldView.select();
 
         // Make sure that each time the panel shows up, the URL field remains in sync with the value of
         // the command. If the user typed in the input, then canceled the balloon (`titleInputView#value` stays

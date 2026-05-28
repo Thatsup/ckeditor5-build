@@ -53,21 +53,21 @@
           // previewurl: '',
         }
       } )
-      .then(editor => {
-        CKEditorInspector.attach( editor );
-      })
+      .then( editor => CKEditorInspector.attach( { 'classic': editor } ) )
       .catch( err => {
         console.error( err.stack );
       } );
 
   CKEDITOR.BalloonEditor
       .create( document.querySelector( '#inline-editor' ) )
+      .then( editor => CKEditorInspector.attach( { 'balloon': editor } ) )
       .catch( err => {
         console.error( err.stack );
       } );
 
   CKEDITOR.MiniEditor
       .create( document.querySelector( '#mini-editor' ) )
+      .then( editor => CKEditorInspector.attach( { 'mini': editor } ) )
       .catch( err => {
         console.error( err.stack );
       } );

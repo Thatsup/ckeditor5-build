@@ -1,6 +1,6 @@
 {
   "name": "@thatsup/ckeditor5-build",
-  "version": "3.3.2",
+  "version": "4.0.0",
   "description": "",
   "main": "./build/ckeditor.js",
   "files": [
@@ -8,62 +8,32 @@
     "ckeditor5-metadata.json"
   ],
   "dependencies": {
-    "@ckeditor/ckeditor5-adapter-ckfinder": "^35.2.1",
-    "@ckeditor/ckeditor5-alignment": "^35.2.1",
-    "@ckeditor/ckeditor5-autoformat": "^35.2.1",
-    "@ckeditor/ckeditor5-basic-styles": "^35.2.1",
-    "@ckeditor/ckeditor5-block-quote": "^35.2.1",
-    "@ckeditor/ckeditor5-ckfinder": "^35.2.1",
-    "@ckeditor/ckeditor5-cloud-services": "^35.2.1",
-    "@ckeditor/ckeditor5-core": "^35.2.1",
-    "@ckeditor/ckeditor5-easy-image": "^35.2.1",
-    "@ckeditor/ckeditor5-editor-balloon": "^35.2.1",
-    "@ckeditor/ckeditor5-editor-classic": "^35.2.1",
-    "@ckeditor/ckeditor5-editor-inline": "^35.2.1",
-    "@ckeditor/ckeditor5-essentials": "^35.2.1",
-    "@ckeditor/ckeditor5-heading": "^35.2.1",
-    "@ckeditor/ckeditor5-horizontal-line": "35.2.1",
-    "@ckeditor/ckeditor5-image": "^35.2.1",
-    "@ckeditor/ckeditor5-indent": "^35.2.1",
-    "@ckeditor/ckeditor5-link": "^35.2.1",
-    "@ckeditor/ckeditor5-list": "^35.2.1",
-    "@ckeditor/ckeditor5-media-embed": "^35.2.1",
-    "@ckeditor/ckeditor5-paragraph": "^35.2.1",
-    "@ckeditor/ckeditor5-paste-from-office": "^35.2.1",
-    "@ckeditor/ckeditor5-remove-format": "^35.2.1",
-    "@ckeditor/ckeditor5-table": "^35.2.1",
-    "@ckeditor/ckeditor5-theme-lark": "^35.2.1",
-    "@ckeditor/ckeditor5-typing": "^35.2.1",
-    "@ckeditor/ckeditor5-upload": "^35.2.1"
+    "ckeditor5": "^48.1.1"
   },
   "devDependencies": {
-    "@ckeditor/ckeditor5-dev-utils": "^31.0.0",
-    "awesomplete": "^1.1.2",
-    "axios": "^0.27",
-    "lodash": "^4.17.21",
-    "@ckeditor/ckeditor5-dev-webpack-plugin": "^31.0.0",
     "@ckeditor/ckeditor5-inspector": "^4.1.0",
-    "css-loader": "^5.2.7",
-    "postcss-loader": "4.3.0",
+    "awesomplete": "^1.1.2",
+    "axios": "^1.16.1",
+    "css-loader": "^7.1.2",
+    "lodash": "^4.17.21",
     "raw-loader": "^4.0.1",
-    "style-loader": "^2.0.0",
-    "terser-webpack-plugin": "^5.0",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.16",
     "ts-loader": "^9.3.0",
-    "webpack": "^5.58",
-    "webpack-cli": "^4.0"
+    "webpack": "^5.94.0",
+    "webpack-cli": "^5.1.4"
   },
   "engines": {
-    "node": ">=12.0.0",
-    "npm": ">=5.7.1"
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Thatsup/ckeditor5-build.git"
+    "url": "git+https://github.com/Thatsup/ckeditor5-build.git"
   },
   "scripts": {
-    "dev": "webpack -w --mode development",
-    "build": "webpack --mode production",
+    "dev": "node --max-old-space-size=8192 ./node_modules/webpack/bin/webpack.js -w --mode development",
+    "build": "node --max-old-space-size=8192 ./node_modules/webpack/bin/webpack.js --mode production",
     "preversion": "npm run build"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }

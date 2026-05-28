@@ -1,33 +1,38 @@
-import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
-import BalloonEditorBase from '@ckeditor/ckeditor5-editor-balloon/src/ballooneditor';
+import {
+	ClassicEditor as ClassicEditorBase,
+	BalloonEditor as BalloonEditorBase,
+	Essentials,
+	Autoformat,
+	Alignment,
+	Bold,
+	Italic,
+	BlockQuote,
+	Heading,
+	Image,
+	ImageCaption,
+	ImageStyle,
+	ImageToolbar,
+	ImageUpload,
+	ImageResize,
+	LinkImage,
+	Indent,
+	Link,
+	List,
+	MediaEmbed,
+	Paragraph,
+	PasteFromOffice,
+	Table,
+	TableToolbar,
+	TextTransformation,
+	SimpleUploadAdapter,
+	RemoveFormat,
+	Underline,
+	HorizontalLine
+} from 'ckeditor5';
 
-import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
-import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
-import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
-import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
-import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
-import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
-import Heading from '@ckeditor/ckeditor5-heading/src/heading';
-import Image from '@ckeditor/ckeditor5-image/src/image';
-import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
-import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
-import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
-import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
-import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
-import LinkImage from '@ckeditor/ckeditor5-link/src/linkimage';
-import Indent from '@ckeditor/ckeditor5-indent/src/indent';
-import Link from '@ckeditor/ckeditor5-link/src/link';
-import List from '@ckeditor/ckeditor5-list/src/list';
-import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
-import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
-import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
-import Table from '@ckeditor/ckeditor5-table/src/table';
-import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
-import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
-import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
-import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
-import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline'
-import HorizontalLine from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+import svTranslations from 'ckeditor5/translations/sv.js';
+
+import 'ckeditor5/ckeditor5.css';
 
 import InternalLink from "./plugins/internallink/src/internalLink.js"
 
@@ -80,6 +85,7 @@ MiniEditor.builtinPlugins = [
 
 // Editor configuration.
 const config = {
+	licenseKey: 'GPL',
 	toolbar: {
 		items: [
 			'heading',
@@ -130,14 +136,14 @@ const config = {
 		]
 	},
 
-	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en',
-	additionalLanguages: ['sv'],
+	translations: [svTranslations],
 };
 
 ClassicEditor.defaultConfig = config;
 BalloonEditor.defaultConfig = config;
 MiniEditor.defaultConfig = {
+	licenseKey: 'GPL',
 	toolbar: {
 		items: [
 			'bold',
@@ -147,7 +153,7 @@ MiniEditor.defaultConfig = {
 	},
 
 	language: 'en',
-	additionalLanguages: ['sv'],
+	translations: [svTranslations],
 };
 
 export default {ClassicEditor, BalloonEditor, MiniEditor}
